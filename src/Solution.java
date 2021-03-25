@@ -1,53 +1,33 @@
-/**
- * Author:Viper
- * Data:2021/3/16
- * description:
- */
-/**
- *
- * @author Snailclimb
- * @date 2018年9月19日
- * @Description: TODO
- */
+
 public class Solution {
-    public static class ListNode {
-        int val;
-        ListNode next = null;
-
-        ListNode(int val) {
-            this.val = val;
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     *
+     * @param buttons int整型一维数组
+     * @return long长整型
+     * 没有转long就会报错，所以一定要转。
+     */
+    public long findMaxButtons (int[] buttons) {
+        // write code here
+        long count = 0;
+        for(int i =0;i<buttons.length;i++){
+            if(buttons[i]==1) {
+                count += 1;
+                continue;
+            }
+            else{
+                long tmp = (i+1)*(buttons[i]-1)+1;
+                count+=tmp;
+            }
         }
+        return count;
     }
-
-    //非递归遍历
-    public ListNode reverseList(ListNode head){
-        ListNode pre = null, cur = head;
-        while(cur != null){
-            ListNode next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
+    public long findMinButtons2(int[] a){
+        long res = a.length;
+        for (int i = 0; i < a.length; i++) {
+            res+=(long) (a[i]-1)*(i+1);
         }
-        return pre;
+        return res;
     }
-
-    public static void main(String[] args) {
-
-        ListNode a = new ListNode(1);
-        ListNode b = new ListNode(2);
-        ListNode c = new ListNode(3);
-        ListNode d = new ListNode(4);
-        ListNode e = new ListNode(5);
-        a.next = b;
-        b.next = c;
-        c.next = d;
-        d.next = e;
-        new Solution().reverseList(a);
-        while (e != null) {
-            System.out.println(e.val);
-            e = e.next;
-        }
-    }
-
 }
-
